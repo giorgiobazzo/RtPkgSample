@@ -2,7 +2,7 @@ program App;
 
 uses
   Vcl.Forms,
-  //MyUnit,
+  MyUnit, //From TrPartUnits.bpl, if remove, breakpoint works in win32 and win64
   AppForm in 'AppForm.pas' {Form2};
 
 {$R *.res}
