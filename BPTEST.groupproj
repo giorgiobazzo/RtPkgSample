@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{1ADC59A2-C54B-4F02-A2E6-FBDAED820ED2}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DelphiUnits\DelphiUnits.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="3PartUnits\TrPartUnits.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="App\App.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DelphiUnits">
+        <MSBuild Projects="DelphiUnits\DelphiUnits.dproj"/>
+    </Target>
+    <Target Name="DelphiUnits:Clean">
+        <MSBuild Projects="DelphiUnits\DelphiUnits.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiUnits:Make">
+        <MSBuild Projects="DelphiUnits\DelphiUnits.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TrPartUnits">
+        <MSBuild Projects="3PartUnits\TrPartUnits.dproj"/>
+    </Target>
+    <Target Name="TrPartUnits:Clean">
+        <MSBuild Projects="3PartUnits\TrPartUnits.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TrPartUnits:Make">
+        <MSBuild Projects="3PartUnits\TrPartUnits.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="App">
+        <MSBuild Projects="App\App.dproj"/>
+    </Target>
+    <Target Name="App:Clean">
+        <MSBuild Projects="App\App.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="App:Make">
+        <MSBuild Projects="App\App.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DelphiUnits;TrPartUnits;App"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DelphiUnits:Clean;TrPartUnits:Clean;App:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DelphiUnits:Make;TrPartUnits:Make;App:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
